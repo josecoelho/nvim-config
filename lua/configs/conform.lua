@@ -3,17 +3,15 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    typescript = {"prettier"},
-    javascript = {"prettier"},
+    typescript = {{ "prettierd", "prettier" }},
+    javascript = {{ "prettierd", "prettier" }},
     terraform = {"tflint"},
 
 
   },
 
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 500,
-    lsp_fallback = true,
+  format_after_save = {
+    lsp_format = "fallback",
   },
 }
 
