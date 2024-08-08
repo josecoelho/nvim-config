@@ -1,7 +1,13 @@
 return {
   {
+    "robitx/gp.nvim",
+    config = function()
+      require "gp.nvim"
+    end,
+  },
+  {
     "stevearc/conform.nvim",
-    event = 'BufWritePost', -- uncomment for format on save
+    event = "BufWritePost", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
@@ -15,8 +21,8 @@ return {
     end,
   },
   {
-   "williamboman/mason.nvim",
-   opts = {
+    "williamboman/mason.nvim",
+    opts = {
       ensure_installed = {
         -- lua stuff
         "lua-language-server",
@@ -48,85 +54,87 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({})
+      require("copilot").setup {}
     end,
   },
   {
-    'nanozuki/tabby.nvim',
-    event = 'VimEnter',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    "nanozuki/tabby.nvim",
+    event = "VimEnter",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require('configs.tabby')
+      require "configs.tabby"
     end,
   },
 
   -- Tmux integration
   {
     "christoomey/vim-tmux-navigator",
-    event='VeryLazy',
+    event = "VeryLazy",
   },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "vim", "vimdoc", "lua",
-        "html", "css",
-        "javascript", "typescript", "tsx",
-        "markdown", "markdown_inline",
+        "vim",
+        "vimdoc",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "markdown",
+        "markdown_inline",
       },
     },
   },
   {
-    'tmux-plugins/vim-tmux-focus-events',
-    event='VeryLazy',
+    "tmux-plugins/vim-tmux-focus-events",
+    event = "VeryLazy",
   },
   {
     "tpope/vim-surround",
-    event="VeryLazy",
+    event = "VeryLazy",
   },
   -- Git wrapper
   {
     "tpope/vim-fugitive",
-    event="VeryLazy",
+    event = "VeryLazy",
     config = function()
       -- fix issue of missing netrw disabled by telescope.vim
       -- reimplement :Browser command
-      vim.api.nvim_create_user_command(
-        'Browse',
-        function (opts)
-          vim.fn.system { 'open', opts.fargs[1] }
-        end,
-        { nargs = 1 }
-      )
-    end
+      vim.api.nvim_create_user_command("Browse", function(opts)
+        vim.fn.system { "open", opts.fargs[1] }
+      end, { nargs = 1 })
+    end,
   },
   {
     "tpope/vim-rails",
-    event="VeryLazy",
+    event = "VeryLazy",
   },
   {
     "tpope/vim-endwise",
-    event="VeryLazy",
+    event = "VeryLazy",
   },
   {
     "tpope/vim-rhubarb",
-    event="VeryLazy",
+    event = "VeryLazy",
   },
   -- :GBrowse bit bucket
   {
     "tommcdo/vim-fubitive",
-    event="VeryLazy",
+    event = "VeryLazy",
   },
   {
     "jackMort/ChatGPT.nvim",
-    event = 'VeryLazy',
+    event = "VeryLazy",
     config = function()
       require("chatgpt").setup()
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
+      "nvim-telescope/telescope.nvim",
+    },
   },
 }
