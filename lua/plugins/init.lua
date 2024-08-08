@@ -2,7 +2,7 @@ return {
   {
     "robitx/gp.nvim",
     config = function()
-      require "gp.nvim"
+      require "configs.gpnvim"
     end,
   },
   {
