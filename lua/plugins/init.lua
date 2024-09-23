@@ -1,11 +1,42 @@
 return {
   {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    build = "make", -- This is Optional, only if you want to use tiktoken_core to calculate tokens count
+    opts = {
+      -- add any opts here
+    },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below is optional, make sure to setup it properly if you have lazy=true
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
+    ft = { "markdown", "Avante" },
+  },
+  {
+    -- gpt chat using MD
     "robitx/gp.nvim",
     config = function()
       require "configs.gpnvim"
     end,
   },
   {
+    -- auto fix on save
     "stevearc/conform.nvim",
     event = "BufWritePost", -- uncomment for format on save
     config = function()
@@ -21,6 +52,7 @@ return {
     end,
   },
   {
+    -- auto install lsp dependencies
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -50,11 +82,10 @@ return {
     },
   },
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
+    -- copilot alternative
+    "supermaven-inc/supermaven-nvim",
     config = function()
-      require("copilot").setup {}
+      require("supermaven-nvim").setup {}
     end,
   },
   {
@@ -124,17 +155,5 @@ return {
   {
     "tommcdo/vim-fubitive",
     event = "VeryLazy",
-  },
-  {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup()
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
   },
 }
