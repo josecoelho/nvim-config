@@ -31,6 +31,7 @@ return {
   {
     -- gpt chat using MD
     "robitx/gp.nvim",
+    event = "VeryLazy",
     config = function()
       require "configs.gpnvim"
     end,
@@ -78,6 +79,9 @@ return {
         "pyright",
         "ruff",
         "mypy",
+
+        -- ts
+        "ts_ls",
       },
     },
   },
@@ -138,6 +142,12 @@ return {
         vim.fn.system { "open", opts.fargs[1] }
       end, { nargs = 1 })
     end,
+  },
+  {
+    "akinsho/git-conflict.nvim",
+    version = "*",
+    config = true,
+    event = "VeryLazy",
   },
   {
     "tpope/vim-rails",
