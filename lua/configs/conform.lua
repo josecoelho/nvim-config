@@ -9,6 +9,7 @@ local options = {
     },
     javascript = { { "prettierd", "prettier", stop_after_first = true } },
     terraform = { "tflint" },
+    python = { "ruff_fix" },
   },
 
   format_after_save = {

@@ -1,33 +1,5 @@
 return {
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    build = "make", -- This is Optional, only if you want to use tiktoken_core to calculate tokens count
-    opts = {
-      -- add any opts here
-    },
-    dependencies = {
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below is optional, make sure to setup it properly if you have lazy=true
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {
-      file_types = { "markdown", "Avante" },
-    },
-    ft = { "markdown", "Avante" },
-  },
+  require("plugins.avante")[1],
   {
     -- gpt chat using MD
     "robitx/gp.nvim",
@@ -44,7 +16,12 @@ return {
       require "configs.conform"
     end,
   },
-
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      return require("configs.cmp").opts()
+    end,
+  },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -88,6 +65,7 @@ return {
   {
     -- copilot alternative
     "supermaven-inc/supermaven-nvim",
+    event = "VeryLazy",
     config = function()
       require("supermaven-nvim").setup {}
     end,
