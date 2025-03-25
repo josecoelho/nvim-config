@@ -1,89 +1,83 @@
 return {
+  -- Load the Avante plugin configuration
   require("plugins.avante")[1],
+
+  -- Auto-fix code on save
   {
-    -- gpt chat using MD
-    "robitx/gp.nvim",
-    event = "VeryLazy",
-    config = function()
-      require "configs.gpnvim"
-    end,
-  },
-  {
-    -- auto fix on save
     "stevearc/conform.nvim",
-    event = "BufWritePost", -- uncomment for format on save
+    event = "BufWritePost", -- Trigger on buffer write
     config = function()
-      require "configs.conform"
+      require "configs.conform" -- Load the configuration for auto-fixing
     end,
   },
+
+  -- Autocompletion plugin
   {
     "hrsh7th/nvim-cmp",
     opts = function()
-      return require("configs.cmp").opts()
+      return require("configs.cmp").opts() -- Load options for nvim-cmp
     end,
   },
+
+  -- LSP configuration
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
+      require("nvchad.configs.lspconfig").defaults() -- Set default LSP configurations
+      require "configs.lspconfig" -- Load additional LSP configurations
     end,
   },
+
+  -- Auto-install LSP dependencies
   {
-    -- auto install lsp dependencies
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        -- lua stuff
+        -- Language servers and formatters for various languages
         "lua-language-server",
         "stylua",
-
-        -- web dev stuff
         "css-lsp",
         "html-lsp",
         "typescript-language-server",
         "deno",
         "prettier",
-
-        -- terraform stuff
         "terraform-ls",
-
-        -- c/cpp stuff
         "clangd",
         "clang-format",
-
-        -- python stuff
         "pyright",
         "ruff",
         "mypy",
-
-        -- ts
         "ts_ls",
       },
     },
   },
+
+  -- Alternative to GitHub Copilot
   {
-    -- copilot alternative
     "supermaven-inc/supermaven-nvim",
     event = "VeryLazy",
     config = function()
-      require("supermaven-nvim").setup {}
-    end,
-  },
-  {
-    "nanozuki/tabby.nvim",
-    event = "VimEnter",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require "configs.tabby"
+      require("supermaven-nvim").setup {} -- Setup the supermaven plugin
     end,
   },
 
-  -- Tmux integration
+  -- Tab management plugin
+  {
+    "nanozuki/tabby.nvim",
+    event = "VimEnter", -- Load on Vim enter
+    dependencies = "nvim-tree/nvim-web-devicons", -- Requires web devicons
+    config = function()
+      require "configs.tabby" -- Load configuration for tabby
+    end,
+  },
+
+  -- Tmux integration for seamless navigation
   {
     "christoomey/vim-tmux-navigator",
     event = "VeryLazy",
   },
+
+  -- Treesitter for advanced syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -101,45 +95,71 @@ return {
       },
     },
   },
+
+  -- Tmux focus events integration
   {
     "tmux-plugins/vim-tmux-focus-events",
     event = "VeryLazy",
   },
+
+  -- Surrounding characters manipulation
   {
     "tpope/vim-surround",
     event = "VeryLazy",
   },
-  -- Git wrapper
+
+  -- Git wrapper for Neovim
   {
     "tpope/vim-fugitive",
     event = "VeryLazy",
     config = function()
-      -- fix issue of missing netrw disabled by telescope.vim
-      -- reimplement :Browser command
+      -- Fix issue of missing netrw disabled by telescope.vim
+      -- Reimplement :Browser command to open URLs
       vim.api.nvim_create_user_command("Browse", function(opts)
-        vim.fn.system { "open", opts.fargs[1] }
+        vim.fn.system { "open", opts.fargs[1] } -- Open the URL in the default browser
       end, { nargs = 1 })
     end,
   },
+
+  -- Git conflict resolution plugin
   {
     "akinsho/git-conflict.nvim",
-    version = "*",
-    config = true,
+    version = "*", -- Use the latest version
+    config = true, -- Load the default configuration
     event = "VeryLazy",
   },
+
+  -- Ruby on Rails support
   {
     "tpope/vim-rails",
     event = "VeryLazy",
   },
+
+  -- Automatically add 'end' in Ruby
   {
     "tpope/vim-endwise",
     event = "VeryLazy",
   },
+
+  -- Ruby syntax highlighting and formatting
+  {
+    "vim-ruby/vim-ruby",
+    event = "VeryLazy",
+  },
+
+  -- Automatically add 'end' in Ruby
+  {
+    "tpope/vim-endwise",
+    event = "VeryLazy",
+  },
+
+  -- GitHub integration for browsing
   {
     "tpope/vim-rhubarb",
     event = "VeryLazy",
   },
-  -- :GBrowse bit bucket
+
+  -- Bitbucket integration for browsing
   {
     "tommcdo/vim-fubitive",
     event = "VeryLazy",
