@@ -2,6 +2,11 @@ require("mcphub").setup {
   -- Required options
   port = 9898, -- Port for MCP Hub server
   config = vim.fn.expand "~/.config/mcpservers.json", -- Absolute path to config file
+  extensions = {
+    avante = {
+      make_slash_commands = true, -- make /slash commands from MCP server prompts
+    },
+  },
 
   -- Optional options
   on_ready = function(hub)

@@ -8,32 +8,7 @@ local servers = { "html", "cssls", "ts_ls", "clangd", "pyright", "terraformls", 
 -- on_attach function for lspconfig
 -- mappings need to be here because they are lazy loaded
 local on_attach = function(client, bufnr)
-  local map = vim.keymap.set
   nvlsp.on_attach(client, bufnr)
-  vim.keymap.set("n", "gd", "<cmd> Telescope<cr>", { buffer = bufnr })
-
-  -- LSP mappings with Telescope
-  map("n", "gd", function()
-    require("telescope.builtin").lsp_definitions()
-  end, { desc = "LSP definitions" })
-  map("n", "gr", function()
-    require("telescope.builtin").lsp_references()
-  end, { desc = "LSP references" })
-  map("n", "gi", function()
-    require("telescope.builtin").lsp_implementations()
-  end, { desc = "LSP implementations" })
-  map("n", "gt", function()
-    require("telescope.builtin").lsp_type_definitions()
-  end, { desc = "LSP type definitions" })
-  map("n", "<leader>ls", function()
-    require("telescope.builtin").lsp_document_symbols()
-  end, { desc = "Document symbols" })
-  map("n", "<leader>lS", function()
-    require("telescope.builtin").lsp_workspace_symbols()
-  end, { desc = "Workspace symbols" })
-  map("n", "<leader>ld", function()
-    require("telescope.builtin").diagnostics()
-  end, { desc = "Diagnostics" })
 end
 
 -- lsps with default config

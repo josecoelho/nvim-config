@@ -6,7 +6,6 @@ local options = {
     html = { "prettier" },
     typescript = { "prettierd", "prettier", stop_after_first = true },
     javascript = { "prettierd", "prettier", stop_after_first = true },
-    terraform = { "tflint" },
     python = { "ruff_fix" },
     ruby = { "rubocop", "standardrb", stop_after_first = true },
   },
