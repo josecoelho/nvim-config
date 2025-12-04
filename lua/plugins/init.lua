@@ -25,12 +25,11 @@ return {
     end,
   },
 
-  -- LSP configuration
+  -- LSP configuration (provides server configs in lsp/ directory)
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvchad.configs.lspconfig").defaults() -- Set default LSP configurations
-      require "configs.lspconfig" -- Load additional LSP configurations
+      require "configs.lspconfig"
     end,
   },
 
